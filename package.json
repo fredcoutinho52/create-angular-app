@@ -1,0 +1,18 @@
+{
+  "name": "meu-modulo",
+  "version": "1.0.0",
+  "description": "Meu primeiro módulo NPM",
+  "main": "./lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "diga-ola": "./bin/meu-modulo-legal.js"
+  },
+  "keywords": [],
+  "author": "fredcoutinho",
+  "license": "MIT"
+}
