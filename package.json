@@ -1,18 +1,12 @@
 {
-  "name": "meu-modulo",
+  "name": "create-angular-app",
   "version": "1.0.0",
-  "description": "Meu primeiro módulo NPM",
+  "description": "Alternative project manager for Angular",
   "main": "./lib/index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "bin": {
-    "diga-ola": "./bin/meu-modulo-legal.js"
+    "create-angular-app": "./bin/create-angular-app.js"
   },
-  "keywords": [],
-  "author": "fredcoutinho",
+  "preferGlobal": true,
+  "author": "Fred Coutinho",
   "license": "MIT"
 }
