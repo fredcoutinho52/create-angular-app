@@ -6,7 +6,7 @@ Alternative project manager for Angular (still in development).
 
 #### Clone this repository
 ```
-git clone https://github.com/fredcoutinho52/first-npm-package.git
+git clone https://github.com/fredcoutinho52/create-angular-app.git
 ```
 
 #### Install the package
