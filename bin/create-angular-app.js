@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const { createApp, createComponent } = require("../lib/index.js");
-const { primaryInstructions } = require("../utils/constants");
+import { createApp, createComponent } from "../lib/index.js";
+import { primaryInstructions } from "../utils/constants.js";
 
 const args = process.argv.splice(process.execArgv.length + 2);
 
@@ -11,8 +11,7 @@ const userInput = args[1];
 const isInstructionValid = primaryInstructions.some(item => item === instruction);
 
 if (!isInstructionValid) {
-  console.log(`Command not valid: ${instruction}`);
-  return;
+  throw `Command not valid: ${instruction}`;
 }
 
 switch (instruction) {

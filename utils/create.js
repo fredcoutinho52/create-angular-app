@@ -1,8 +1,8 @@
-const fs = require("fs");
+import fs from "fs";
 
 const oldStr = "replace-here";
 
-function updateProjectFiles(appName) {
+export function updateProjectFiles(appName) {
   fs.readFile(`${appName}/angular.json`, "utf8", (err, data) => {
     if (err) {
       throw err;
@@ -31,5 +31,3 @@ function updateProjectFiles(appName) {
     });
   });
 }
-
-module.exports = { updateProjectFiles }

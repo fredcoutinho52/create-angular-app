@@ -1,6 +1,7 @@
 {
   "name": "create-angular-app",
   "version": "1.0.0",
+  "type": "module",
   "description": "Alternative project manager for Angular",
   "main": "./lib/index.js",
   "bin": {
