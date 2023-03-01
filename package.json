@@ -1,11 +1,10 @@
 {
   "name": "create-angular-app",
   "version": "1.0.0",
-  "type": "module",
   "description": "Alternative project manager for Angular",
   "main": "./lib/index.js",
   "bin": {
-    "create-angular-app": "./bin/create-angular-app.js"
+    "caa": "./bin/create-angular-app.js"
   },
   "preferGlobal": true,
   "author": "Fred Coutinho",

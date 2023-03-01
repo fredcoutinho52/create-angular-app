@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { createApp, createComponent } from "../lib/index.js";
-import { primaryInstructions } from "../utils/constants.js";
+const { createApp, createComponent } = require("../lib");
+const { primaryInstructions } = require("../utils/constants");
 
 const args = process.argv.splice(process.execArgv.length + 2);
 
