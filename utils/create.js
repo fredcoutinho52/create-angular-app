@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { htmlComponentContent, tsComponentContent } = require("./content");
 
 const oldStr = "replace-here";
 
@@ -41,21 +42,37 @@ function createComponentFiles(packageFolder, projectFolder, componentName) {
     if (err) {
       throw err;
     }
-
     console.log("✔ Component folder created successfully!");
   });
 
-  // copy template files
-  fs.cp(`${packageFolder}templates\\component`, componentPath, options, (err) => {
+  // create html file
+  const htmlFilePath = `${componentPath}\\${componentName}.component.html`;
+  const htmlFileContent = htmlComponentContent(componentName);
+  fs.writeFile(htmlFilePath, htmlFileContent, "utf-8", (err) => {
     if (err) {
       throw err;
     }
-
-    console.log("✔ Component created successfully!");
+    console.log("✔ HTML file created successfully!");
   });
 
-  // update files with component name
+  // create css file
+  const cssFilePath = `${componentPath}\\${componentName}.component.css`;
+  fs.writeFile(cssFilePath, "", "utf-8", (err) => {
+    if (err) {
+      throw err;
+    }
+    console.log("✔ CSS file created successfully!");
+  });
 
+  // create ts file
+  const tsFilePath = `${componentPath}\\${componentName}.component.ts`;
+  const tsFileContent = tsComponentContent(componentName);
+  fs.writeFile(tsFilePath, tsFileContent, "utf-8", (err) => {
+    if (err) {
+      throw err;
+    }
+    console.log("✔ TypeScript file created successfully!");
+  });
 }
 
 module.exports = { updateProjectFiles, createComponentFiles }
