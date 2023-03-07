@@ -18,12 +18,12 @@ npm install -g [path-for-package-folder]
 
 #### Create App
 ```
-create-angular-app new [app-name]
+caa new [app-name]
 ```
 
 #### Create Component
 ```
-create-angular-app generate [component-name]
+caa generate [component-name]
 ```
 
 ## License

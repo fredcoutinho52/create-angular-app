@@ -1,5 +1,6 @@
 const fs = require("fs");
 const { htmlComponentContent, tsComponentContent } = require("./content");
+const { formatComponentName } = require("./format");
 
 const oldStr = "replace-here";
 
@@ -33,7 +34,7 @@ function updateProjectFiles(appName) {
   });
 }
 
-function createComponentFiles(packageFolder, projectFolder, componentName) {
+function createComponentFiles(projectFolder, componentName) {
   const componentPath = `${projectFolder}\\src\\app\\${componentName}`;
   const options = { recursive: true }
 
@@ -73,6 +74,36 @@ function createComponentFiles(packageFolder, projectFolder, componentName) {
     }
     console.log("✔ TypeScript file created successfully!");
   });
+
+  updateProjectWithComponent(projectFolder, componentName);
 }
 
-module.exports = { updateProjectFiles, createComponentFiles }
+function updateProjectWithComponent(projectFolder, componentName) {
+  const modulePath = `${projectFolder}\\src\\app\\app.module.ts`;
+
+  fs.readFile(modulePath, "utf-8", (err, data) => {
+    if (err) {
+      throw err;
+    }
+
+    const componentNameFormatted = formatComponentName(componentName);
+    const importLine = `import { ${componentNameFormatted} } from './${componentName}/${componentName}.component;'`;
+    const moduleContent = data.split("@NgModule");
+    const contentWithImport = moduleContent[0] + `${importLine}\n\n` + "@NgModule" + moduleContent[1];
+
+    const moduleImports = contentWithImport.split("declarations: [");
+    const result = moduleImports[0] + "declarations: [\n" + `\t\t${componentNameFormatted},` + moduleImports[1];
+
+    fs.writeFile(modulePath, result, "utf-8", (err) => {
+      if (err) {
+        throw err;
+      }
+      console.log("✔ Module updated successfully!");
+    });
+  });
+}
+
+module.exports = {
+  updateProjectFiles,
+  createComponentFiles,
+}
