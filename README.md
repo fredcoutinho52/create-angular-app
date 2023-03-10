@@ -1,6 +1,12 @@
 # Create Angular App
 
-Alternative project manager for Angular (still in development).
+Create Angular App (CAA) is a alternative project manager for Angular projects, it can replace the Angular CLI. Soon it will be published on NPM.
+
+## Why use Create Angular App?
+
+* It's faster than Angular CLI.
+* Use a package manager of your choice.
+* Easier to replace karma as test library.
 
 ## How to install
 
@@ -16,12 +22,12 @@ npm install -g [path-for-package-folder]
 
 ## Available Commands
 
-#### Create App
+#### Create a project
 ```
 caa new [app-name]
 ```
 
-#### Create Component
+#### Create a component
 ```
 caa generate [component-name]
 ```
