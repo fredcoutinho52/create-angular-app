@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 
-const { createApp, createComponent } = require("../lib");
+const {
+  createApp,
+  createComponent,
+  createModule,
+  createService,
+} = require("../lib");
 const { primaryInstructions } = require("../utils/constants");
 
 const args = process.argv.splice(process.execArgv.length + 2);
@@ -15,10 +20,16 @@ if (!isInstructionValid) {
 }
 
 switch (instruction) {
-  case "new":
+  case "app":
     createApp(userInput);
     break;
-  case "generate":
+  case "component":
     createComponent(userInput);
+    break;
+  case "module":
+    createModule(userInput);
+    break;
+  case "service":
+    createService(userInput);
     break;
 }

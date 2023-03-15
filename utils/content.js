@@ -1,11 +1,11 @@
-const { formatComponentName } = require("./format");
+const { formatClassName } = require("./format");
 
 function htmlComponentContent(componentName) {
     return `<h1>Change this file to start develop ${componentName}!</h1>`;
 }
 
 function tsComponentContent(componentName) {
-    const nameFormatted = formatComponentName(componentName);
+    const nameFormatted = formatClassName(componentName);
     return `import { Component } from '@angular/core';
 
     @Component({
@@ -16,4 +16,27 @@ function tsComponentContent(componentName) {
     export class ${nameFormatted}Component { }`;
 }
 
-module.exports = { htmlComponentContent, tsComponentContent }
+function serviceContent(serviceName) {
+    const nameFormatted = formatClassName(serviceName);
+    return `import { Injectable } from '@angular/core';
+    import { HttpClient } from '@angular/common/http';
+    import { Observable } from 'rxjs';
+
+    @Injectable({
+    providedIn: 'root'
+    })
+    export class ${nameFormatted}Service {
+
+    constructor(
+        private http: HttpClient,
+    ) { }
+
+    // write your http methods here
+    }`;
+}
+
+module.exports = {
+    htmlComponentContent,
+    tsComponentContent,
+    serviceContent,
+}
