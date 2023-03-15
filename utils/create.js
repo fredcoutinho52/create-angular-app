@@ -1,6 +1,6 @@
 const fs = require("fs");
 const { htmlComponentContent, tsComponentContent } = require("./content");
-const { formatComponentName } = require("./format");
+const { formatClassName } = require("./format");
 
 const oldStr = "replace-here";
 
@@ -36,7 +36,21 @@ function updateProjectFiles(appName) {
 
 function createComponentFiles(projectFolder, componentName) {
   const componentPath = `${projectFolder}\\src\\app\\${componentName}`;
+  const modulePath = `${projectFolder}\\src\\app\\app.module.ts`;
   const options = { recursive: true }
+
+  // check if component already exists
+  fs.readFile(modulePath, "utf-8", (err, data) => {
+    if (err) {
+      throw err;
+    }
+
+    const componentNameFormatted = formatClassName(componentName);
+    const componentAlreadyExists = data.includes(componentNameFormatted);
+    if (componentAlreadyExists) {
+      throw new Error("Component already exists!");
+    }
+  });
 
   // create component folder
   fs.mkdir(componentPath, options, (err) => {
@@ -86,13 +100,13 @@ function updateProjectWithComponent(projectFolder, componentName) {
       throw err;
     }
 
-    const componentNameFormatted = formatComponentName(componentName);
-    const importLine = `import { ${componentNameFormatted} } from './${componentName}/${componentName}.component;'`;
+    const componentNameFormatted = formatClassName(componentName);
+    const importLine = `import { ${componentNameFormatted}Component } from './${componentName}/${componentName}.component';`;
     const moduleContent = data.split("@NgModule");
-    const contentWithImport = moduleContent[0] + `${importLine}\n\n` + "@NgModule" + moduleContent[1];
+    const contentWithImport = moduleContent[0] + `${importLine}\n` + "\n@NgModule" + moduleContent[1];
 
     const moduleImports = contentWithImport.split("declarations: [");
-    const result = moduleImports[0] + "declarations: [\n" + `\t\t${componentNameFormatted},` + moduleImports[1];
+    const result = moduleImports[0] + "declarations: [\n" + `\t\t${componentNameFormatted}Component,` + moduleImports[1];
 
     fs.writeFile(modulePath, result, "utf-8", (err) => {
       if (err) {

@@ -16,7 +16,7 @@ const userInput = args[1];
 const isInstructionValid = instructions.some(item => item === instruction);
 
 if (!isInstructionValid) {
-  throw `Command not valid: ${instruction}`;
+  throw new Error(`Command not valid: ${instruction}`);
 }
 
 switch (instruction) {
