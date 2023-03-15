@@ -1,10 +1,8 @@
-const primaryInstructions = [
-  "new",
-  "generate",
-];
-
-const secondaryInstructions = [
+const instructions = [
+  "app",
   "component",
+  "module",
+  "service",
 ];
 
-module.exports = { primaryInstructions, secondaryInstructions }
+module.exports = { instructions }
